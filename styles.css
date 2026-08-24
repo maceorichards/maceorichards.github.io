@@ -8,9 +8,9 @@
   --ink:        #ffffff;   /* primary text         */
   --ink-soft:   #a99fb5;   /* secondary text       */
   --line:       #302a38;   /* hairlines, borders   */
-  --accent:     #9921de;   /* neon purple          */
-  --accent-2:   #d072ed;   /* lighter neon purple  */
-  --accent-rgb: 153 33 222;               /* --accent as channels, for alpha blends */
+  --accent:     #851dc1;   /* neon purple          */
+  --accent-2:   #c16adc;   /* lighter neon purple  */
+  --accent-rgb: 133 29 193;               /* --accent as channels, for alpha blends */
   --glow:       rgb(var(--accent-rgb) / .55);  /* neon bloom */
   --slab:       #17141a;   /* footer block bg      */
   --slab-ink:   #ffffff;   /* footer block text    */
