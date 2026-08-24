@@ -8,9 +8,10 @@
   --ink:        #ffffff;   /* primary text         */
   --ink-soft:   #a99fb5;   /* secondary text       */
   --line:       #302a38;   /* hairlines, borders   */
-  --accent:     #b026ff;   /* neon purple          */
-  --accent-2:   #e07bff;   /* lighter neon purple  */
-  --glow:       rgba(176, 38, 255, .55);  /* neon bloom */
+  --accent:     #9921de;   /* neon purple          */
+  --accent-2:   #d072ed;   /* lighter neon purple  */
+  --accent-rgb: 153 33 222;               /* --accent as channels, for alpha blends */
+  --glow:       rgb(var(--accent-rgb) / .55);  /* neon bloom */
   --slab:       #17141a;   /* footer block bg      */
   --slab-ink:   #ffffff;   /* footer block text    */
 
@@ -87,7 +88,7 @@ a:focus-visible, .btn:focus-visible {
 body::before {
   content: ""; position: fixed; z-index: 0; pointer-events: none;
   top: -25vh; right: -10vw; width: 70vw; height: 70vw;
-  background: radial-gradient(circle, rgba(176,38,255,.16) 0%, transparent 62%);
+  background: radial-gradient(circle, rgb(var(--accent-rgb) / .16) 0%, transparent 62%);
 }
 
 main, footer { position: relative; z-index: 1; }
@@ -165,10 +166,6 @@ main, footer { position: relative; z-index: 1; }
   color: var(--ink-soft);
   margin: 0;
 }
-.lede .mark-hl {
-  color: var(--ink);
-  background: linear-gradient(transparent 62%, rgba(176,38,255,.42) 62%);
-}
 
 /* no flex-shrink:0 here — it would force both buttons to stay on one row
    and overflow the gutter on narrow screens */
@@ -192,7 +189,7 @@ main, footer { position: relative; z-index: 1; }
 .btn--ghost { border: var(--border); color: var(--ink); }
 .btn--ghost:hover {
   border-color: var(--accent); color: var(--accent-2);
-  transform: translateY(-2px); box-shadow: 0 8px 30px rgba(176,38,255,.22);
+  transform: translateY(-2px); box-shadow: 0 8px 30px rgb(var(--accent-rgb) / .22);
 }
 
 /* ============================================================
@@ -270,7 +267,7 @@ main, footer { position: relative; z-index: 1; }
 .card:hover, .card:focus-within {
   transform: translateY(-5px);
   border-color: var(--accent);
-  box-shadow: 0 14px 44px rgba(176,38,255,.20);
+  box-shadow: 0 14px 44px rgb(var(--accent-rgb) / .20);
 }
 .card:hover::before, .card:focus-within::before { transform: scaleX(1); }
 
