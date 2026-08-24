@@ -90,16 +90,16 @@ body::before {
   background: radial-gradient(circle, rgba(176,38,255,.16) 0%, transparent 62%);
 }
 
-main, .topbar, footer { position: relative; z-index: 1; }
+main, footer { position: relative; z-index: 1; }
 
 /* every band shares one centered measure — this is what makes it read landscape */
-.topbar, .hero, .about, .work, .footer__inner, .footer__fine {
+.hero, .about, .work, .footer__inner, .footer__fine {
   max-width: var(--maxw);
   margin-inline: auto;
 }
 
 /* shared label style */
-.eyebrow, .card__num, .tags li, .facts span, .footer__fine {
+.card__num, .tags li, .facts span, .footer__fine {
   font-family: var(--font-mono);
   font-size: var(--step-sm);
   letter-spacing: .08em;
@@ -108,37 +108,33 @@ main, .topbar, footer { position: relative; z-index: 1; }
 }
 
 /* ============================================================
-   TOP BAR
+   HERO TOP ROW — name on the left, nav on the right
    ============================================================ */
-.topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: var(--gap);
-  padding: 1.5rem var(--pad);
+.hero__top {
+  display: flex; flex-wrap: wrap;
+  align-items: flex-end; justify-content: space-between;
+  gap: .5rem clamp(1.5rem, 4vw, 3rem);
 }
-.mark {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-family: var(--font-mono); font-size: var(--step-sm);
-  letter-spacing: .12em; color: var(--ink);
+.hero__top nav {
+  display: flex; gap: clamp(1rem, 2.5vw, 2.25rem);
+  padding-bottom: .6rem;          /* sits on the name's baseline */
 }
-.dot {
-  width: .55rem; height: .55rem; border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(176,38,255,.18), 0 0 12px var(--glow);
-}
-.topbar nav { display: flex; gap: clamp(1rem, 2.5vw, 2.25rem); }
-.topbar nav a {
-  color: var(--ink-soft); font-size: var(--step-sm);
-  letter-spacing: .04em;
+.hero__top nav a {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--step-sm);
+  text-transform: uppercase;
+  letter-spacing: .1em;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
   transition: color .25s var(--ease), border-color .25s var(--ease);
 }
-.topbar nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.hero__top nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
 
 /* ============================================================
    HERO — three stacked bands, each running the full width
    ============================================================ */
-.hero { padding: clamp(2rem, 5vw, 4.5rem) var(--pad) var(--section); }
+.hero { padding: clamp(2rem, 4.5vw, 3.5rem) var(--pad) var(--section); }
 
 .hero h1 {
   font-size: var(--step-hero);
@@ -146,16 +142,14 @@ main, .topbar, footer { position: relative; z-index: 1; }
   letter-spacing: -.035em;
   font-variation-settings: "SOFT" 0, "WONK" 1;
   white-space: nowrap;            /* full name stays on one line */
-  margin: .3em 0 .55em -.045em;
+  margin: 0 0 0 -.045em;
 }
-.hero h1 em {
-  color: var(--accent);
-  font-variation-settings: "SOFT" 40, "WONK" 1;
-  text-shadow: 0 0 38px var(--glow);
-}
+/* same typeface and weight as the first name — colour only */
+.hero h1 .last { color: var(--accent); text-shadow: 0 0 38px var(--glow); }
 
 /* lede left, buttons right — a wide row instead of a tall stack */
 .hero__row {
+  margin-top: clamp(1.5rem, 3.5vw, 2.75rem);
   display: flex; flex-wrap: wrap;
   align-items: center; justify-content: space-between;
   gap: clamp(1.5rem, 4vw, 3.5rem);
@@ -169,10 +163,8 @@ main, .topbar, footer { position: relative; z-index: 1; }
   min-width: 0;
   max-width: 68ch;
   color: var(--ink-soft);
-  text-wrap: balance;      /* avoids orphaning the last word */
   margin: 0;
 }
-.lede .sep { color: var(--accent); padding: 0 .15em; }
 .lede .mark-hl {
   color: var(--ink);
   background: linear-gradient(transparent 62%, rgba(176,38,255,.42) 62%);
