@@ -217,6 +217,9 @@ main, footer { position: relative; z-index: 1; }
   margin: 0;
 }
 .about p:not(.big) { color: var(--ink-soft); margin: 0; }
+/* the paragraphs live in one wrapper so grid keeps them together in the left
+   column — as bare grid items they get scattered across both columns. */
+.about__prose { display: grid; gap: 1.75em; align-content: start; }   /* space between paragraphs */
 
 .facts { display: grid; gap: .75rem; align-content: start; }
 .facts li { border-top: var(--border); padding-top: .6rem; }
