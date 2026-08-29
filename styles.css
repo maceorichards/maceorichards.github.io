@@ -240,13 +240,14 @@ main, footer { position: relative; z-index: 1; }
 .grid {
   display: grid;
   gap: var(--gap);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  grid-template-columns: 1fr;     /* cards stack, each spanning the full measure */
 }
 
 .card {
   position: relative;
-  display: flex; flex-direction: column;
-  gap: .7rem;
+  display: flex; flex-wrap: wrap;          /* side wraps under the prose when narrow */
+  align-items: flex-start;
+  gap: .7rem clamp(1.5rem, 4vw, 3.5rem);
   padding: clamp(1.35rem, 2.2vw, 1.9rem);
   background: var(--paper-2);
   border: var(--border);
@@ -269,6 +270,17 @@ main, footer { position: relative; z-index: 1; }
 }
 .card:hover::before, .card:focus-within::before { transform: scaleX(1); }
 
+/* left half: number, title, blurb — never overlaps the side column */
+.card__main {
+  flex: 1 1 24ch; min-width: 0;
+  display: flex; flex-direction: column; gap: .7rem;
+}
+/* right half: tags, with the link stacked underneath them */
+.card__side {
+  flex: 0 0 auto; margin-left: auto;
+  display: flex; flex-direction: column; align-items: flex-end; gap: .9rem;
+}
+
 .card__num { margin: 0; }
 .card__title {
   font-size: var(--step-lg);
@@ -277,7 +289,7 @@ main, footer { position: relative; z-index: 1; }
 }
 .card__blurb { color: var(--ink-soft); margin: 0; flex: 1; }
 
-.tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: flex-end; }
 .tags li {
   border: var(--border); border-radius: 999px;
   padding: .2rem .65rem;
@@ -286,8 +298,8 @@ main, footer { position: relative; z-index: 1; }
 
 .card__link {
   display: inline-flex; align-items: center; gap: .4rem;
-  font-weight: 500; margin-top: .25rem;
-  align-self: flex-start;
+  font-weight: 500;
+  align-self: flex-end;
 }
 .card__link span { transition: transform .25s var(--ease); }
 .card:hover .card__link span { transform: translateX(5px); }
